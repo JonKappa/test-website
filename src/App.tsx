@@ -1,3 +1,4 @@
+import Button from "./components/Button";
 import Alert from "./components/alert";
 
 function App()
@@ -8,6 +9,8 @@ function App()
         <Alert>
             Hello <span>World</span>
         </Alert>
+
+        <Button color="primary" onClick={() => console.log('Clicked')}>Hello World</Button>
     </div>);
 }
 
