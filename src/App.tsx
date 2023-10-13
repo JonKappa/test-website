@@ -1,17 +1,23 @@
-import {useState } from "react";
-import Button from "./components/Button";
-import Alert from "./components/Alert";
+import Nav from "./components/Nav";
+import Contact from "./pages/Contact";
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import { Route, Routes } from 'react-router-dom';
 
 function App()
 {
-    const [alertVisable, setAlertVisiblility] = useState(false);
-
     return (
-    <div>
-        {alertVisable && <Alert onClose={() => setAlertVisiblility(false)}>Hello World Alert</Alert>}
-
-        <Button color="primary" onClick={() => setAlertVisiblility(true)}>Hello World</Button>
-    </div>);
+        <>
+            <Nav/>
+            <div className="container">
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/projects" element={<Projects/>}/>
+                    <Route path="/contact" element={<Contact/>}/>
+                </Routes>
+            </div>
+        </>
+    );
 }
 
 export default App;
