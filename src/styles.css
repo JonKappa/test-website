@@ -41,9 +41,19 @@ body {
     align-items: center;
     padding-left: 1rem;
     padding-right: 1rem;
+    transition: .25s;
 }
 
 .nav a.active {
+    background-color: white;
+}
+
+.nav li {
+    transition: .25s;
+}
+
+.nav li.active, .nav li.active:hover {
+    /* color: #777; */
     background-color: white;
 }
 
@@ -53,5 +63,6 @@ body {
 }
 
 .nav li:hover {
-    color: #777;
+    /* color: #bababa; */
+    background-color: rgb(72, 72, 154);
 }
