@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 interface Props {
     to: string;
@@ -10,11 +9,13 @@ function Nav()
 {
     return (
         <nav className="nav">
-            <Link to="/test-website/">
-                <img id="logo" src="src/assets/high-white-trans-logo.png" height="64px" width="100px" />
-            </Link>
 
             <ul>
+                <NavLink to="/test-website/">
+                    {({ isActive, isPending }) => (
+                        <img className="site-logo" src={isActive ? "src/assets/high-black-trans-logo.png" : "src/assets/high-white-trans-logo.png"} height="64px" width="100px" />
+                    )}
+                </NavLink>
                 <CustomLink to="/test-website/projects">Projects</CustomLink>
                 <CustomLink to="/test-website/contact">Contact</CustomLink>
             </ul>
@@ -25,8 +26,6 @@ function Nav()
 function CustomLink({ to, children, ...props }: Props)
 {
     const path = useLocation().pathname;
-
-    console.log(path);
 
     return (
         <li className={path === to ? "active" : ""}>
