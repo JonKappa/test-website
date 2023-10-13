@@ -13,7 +13,7 @@ function Nav()
             <ul>
                 <NavLink to="/">
                     {({ isActive }) => (
-                        <img className="site-logo" src={isActive ? "./src/assets/high-black-trans-logo.png" : "./src/assets/high-white-trans-logo.png"} height="64px" width="100px" />
+                        <img className="site-logo" src={isActive ? "public/assets/high-black-trans-logo.png" : "public/assets/high-white-trans-logo.png"} height="64px" width="100px" />
                     )}
                 </NavLink>
                 <CustomLink to="/projects">Projects</CustomLink>
