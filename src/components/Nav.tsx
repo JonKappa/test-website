@@ -11,13 +11,13 @@ function Nav()
         <nav className="nav">
 
             <ul>
-                <NavLink to="/test-website/">
+                <NavLink to="/">
                     {({ isActive }) => (
-                        <img className="site-logo" src={isActive ? "src/assets/high-black-trans-logo.png" : "src/assets/high-white-trans-logo.png"} height="64px" width="100px" />
+                        <img className="site-logo" src={isActive ? "/src/assets/high-black-trans-logo.png" : "/src/assets/high-white-trans-logo.png"} height="64px" width="100px" />
                     )}
                 </NavLink>
-                <CustomLink to="/test-website/projects">Projects</CustomLink>
-                <CustomLink to="/test-website/contact">Contact</CustomLink>
+                <CustomLink to="/projects">Projects</CustomLink>
+                <CustomLink to="/contact">Contact</CustomLink>
             </ul>
         </nav>
     )
