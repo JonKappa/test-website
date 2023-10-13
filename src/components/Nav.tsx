@@ -12,7 +12,7 @@ function Nav()
 
             <ul>
                 <NavLink to="/test-website/">
-                    {({ isActive, isPending }) => (
+                    {({ isActive }) => (
                         <img className="site-logo" src={isActive ? "src/assets/high-black-trans-logo.png" : "src/assets/high-white-trans-logo.png"} height="64px" width="100px" />
                     )}
                 </NavLink>
