@@ -12,7 +12,7 @@ function Nav()
 
             <ul>
                 <li>
-                    <NavLink to="/">
+                    <NavLink to="/" className="p-0">
                         {({ isActive }) => (
                             <img className="site-logo" src={isActive ? "./assets/high-black-trans-logo.png" : "./assets/high-white-trans-logo.png"} height="64px" width="100px" />
                         )}
