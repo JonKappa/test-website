@@ -1,22 +1,33 @@
 ---
 import 'bootstrap/dist/css/bootstrap.css';
+import '../styles.css';
+import Nav from '../components/Nav.vue';
+import Footer from '../components/Footer.vue';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
 }
 
 const { title = 'Jonathan Capparell' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.slice(base.length).replace(/\/$/, '') || '/';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
+    <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
-    <slot />
+    <Nav base={base} path={path} />
+    <div class="container">
+      <slot />
+    </div>
+    <Footer base={base} />
   </body>
 </html>
