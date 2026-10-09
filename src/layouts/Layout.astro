@@ -1,5 +1,4 @@
 ---
-import 'bootstrap/dist/css/bootstrap.css';
 import '../styles.css';
 import Nav from '../components/Nav.vue';
 import Footer from '../components/Footer.vue';
@@ -25,7 +24,7 @@ const path = Astro.url.pathname.slice(base.length).replace(/\/$/, '') || '/';
   </head>
   <body>
     <Nav base={base} path={path} />
-    <div class="container">
+    <div class="mx-auto mt-4 max-w-[1140px] px-3 text-center">
       <slot />
     </div>
     <Footer base={base} />
