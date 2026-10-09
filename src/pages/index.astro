@@ -1,11 +1,13 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import AlertDemo from '../components/AlertDemo.vue';
-import logo from '../assets/high-res-logo.png';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout>
-  <AlertDemo client:load />
-  <Image id="logo" src={logo} alt="Logo" width={750} height={450} fit="fill" />
+  <h1>Home</h1>
+  <img src={`${base}/assets/7bv2j9.jpg`} /><br />
+  <img src={`${base}/assets/7bv2j9.jpg`} /><br />
+  <img src={`${base}/assets/7bv2j9.jpg`} /><br />
+  <img src={`${base}/assets/7bv2j9.jpg`} /><br />
 </Layout>
