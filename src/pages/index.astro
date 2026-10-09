@@ -1,0 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import AlertDemo from '../components/AlertDemo.vue';
+import logo from '../assets/high-res-logo.png';
+---
+
+<Layout>
+  <AlertDemo client:load />
+  <Image id="logo" src={logo} alt="Logo" width={750} height={450} />
+</Layout>
