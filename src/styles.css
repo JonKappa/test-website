@@ -44,25 +44,43 @@ body {
     transition: .25s;
 }
 
-.nav a.active {
-    background-color: white;
-}
-
 .nav li {
+    position: relative;
     transition: .25s;
 }
 
-.nav li.active, .nav li.active:hover {
-    /* color: #777; */
-    background-color: white;
+.nav li a {
+    position: relative;
+    z-index: 1;
 }
 
 .nav li.active {
     color: black;
-    background-color: white;
 }
 
-.nav li:hover {
+.nav li:hover:not(.active) {
     /* color: #bababa; */
     background-color: rgb(72, 72, 154);
+}
+
+/* White box behind the active link. Its view-transition-name lets Astro's
+   ClientRouter slide it from the old tab to the new one on navigation. Each
+   link has its own view-transition-name too (in Nav.vue), so its text is
+   drawn above the sliding box instead of being covered by it. */
+.nav-indicator {
+    position: absolute;
+    inset: 0;
+    background-color: white;
+    view-transition-name: nav-indicator;
+}
+
+::view-transition-group(nav-indicator) {
+    animation-duration: .3s;
+    animation-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(nav-indicator) {
+        animation: none;
+    }
 }

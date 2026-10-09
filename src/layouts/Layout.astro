@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../styles.css';
 import Nav from '../components/Nav.vue';
 import Footer from '../components/Footer.vue';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -20,6 +21,7 @@ const path = Astro.url.pathname.slice(base.length).replace(/\/$/, '') || '/';
     <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     <Nav base={base} path={path} />
