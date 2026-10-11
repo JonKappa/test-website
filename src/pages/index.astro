@@ -19,50 +19,6 @@ const skills: { name: string; logo: string }[] = [
   { name: 'React', logo: 'react.svg' },
   { name: 'Spring Boot', logo: 'spring.svg' },
 ];
-
-interface Job {
-  role: string;
-  company: string;
-  location: string;
-  dates: string;
-  points: string[];
-}
-
-interface Certification {
-  name: string;
-  issuer: string;
-  year: number;
-}
-
-const experience: Job[] = [
-  {
-    role: 'Software Developer',
-    company: 'Harvard Business Services',
-    location: 'Lewes, DE',
-    dates: '2022 – Present',
-    points: [
-      'Build and maintain the front and back end of customer-facing sites, including the main website and the Client Portal.',
-      'Develop and improve the internal admin site staff use to process orders and manage company records.',
-      'Lead high-priority features and workflow improvements, and modernize legacy code to current standards.',
-      'Review other developers’ projects and give feedback on improvements and bugs.',
-    ],
-  },
-  {
-    role: 'Software Engineer Apprentice',
-    company: 'Code Differently',
-    location: 'Wilmington, DE',
-    dates: '2021 – 2022',
-    points: [
-      'Built REST APIs with Spring Boot and user interfaces with React.',
-      'Practiced core Java, software development methodologies, and problem solving through coding assessments.',
-    ],
-  },
-];
-
-const certifications: Certification[] = [
-  { name: 'Certified ScrumMaster (CSM)', issuer: 'Scrum Alliance', year: 2021 },
-  { name: 'Java Foundations Associate', issuer: 'Oracle', year: 2021 },
-];
 ---
 
 <Layout>
@@ -128,52 +84,6 @@ const certifications: Certification[] = [
           ))
         }
       </div>
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-3xl py-6 text-left">
-    <h2 class="mb-4 text-2xl font-medium">Experience</h2>
-    {
-      experience.map((job) => (
-        <article class="mb-6">
-          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-            <h3 class="text-lg font-medium">
-              {job.role} · {job.company}
-            </h3>
-            <span class="text-sm text-gray-600">{job.dates}</span>
-          </div>
-          <p class="text-sm text-gray-600">{job.location}</p>
-          <ul class="mt-2 list-disc pl-5">
-            {job.points.map((point) => (
-              <li>{point}</li>
-            ))}
-          </ul>
-        </article>
-      ))
-    }
-  </section>
-
-  <section class="mx-auto grid max-w-3xl gap-8 py-6 pb-12 text-left sm:grid-cols-2">
-    <div>
-      <h2 class="mb-4 text-2xl font-medium">Certifications</h2>
-      <ul>
-        {
-          certifications.map((cert) => (
-            <li class="mb-2">
-              <span class="font-medium">{cert.name}</span>
-              <br />
-              <span class="text-sm text-gray-600">
-                {cert.issuer}, {cert.year}
-              </span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <div>
-      <h2 class="mb-4 text-2xl font-medium">Education</h2>
-      <p class="font-medium">Computer Science</p>
-      <p class="text-sm text-gray-600">Delaware Technical Community College, Georgetown, DE · 2024</p>
     </div>
   </section>
 </Layout>
