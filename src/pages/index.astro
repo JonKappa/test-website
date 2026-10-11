@@ -2,12 +2,124 @@
 import Layout from '../layouts/Layout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const skills = [
+  { label: 'Languages', items: ['Java', 'Python', 'C#', 'PHP', 'ColdFusion', 'JavaScript'] },
+  { label: 'Frameworks', items: ['Laravel', 'Livewire', 'Vue', 'Alpine.js', 'React', 'Spring Boot'] },
+];
+
+const experience = [
+  {
+    role: 'Software Developer',
+    company: 'Harvard Business Services',
+    location: 'Lewes, DE',
+    dates: '2022 – Present',
+    points: [
+      'Build and maintain the front and back end of customer-facing sites, including the main website and the Client Portal.',
+      'Develop and improve the internal admin site staff use to process orders and manage company records.',
+      'Lead high-priority features and workflow improvements, and modernize legacy code to current standards.',
+      'Review other developers’ projects and give feedback on improvements and bugs.',
+    ],
+  },
+  {
+    role: 'Software Engineer Apprentice',
+    company: 'Code Differently',
+    location: 'Wilmington, DE',
+    dates: '2021 – 2022',
+    points: [
+      'Built REST APIs with Spring Boot and user interfaces with React.',
+      'Practiced core Java, software development methodologies, and problem solving through coding assessments.',
+    ],
+  },
+];
+
+const certifications = [
+  { name: 'Certified ScrumMaster (CSM)', issuer: 'Scrum Alliance', year: 2021 },
+  { name: 'Java Foundations Associate', issuer: 'Oracle', year: 2021 },
+];
 ---
 
 <Layout>
-  <h1>Home</h1>
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
+  <section class="py-8">
+    <h1>Jonathan Capparell</h1>
+    <p class="text-xl text-gray-600">Software Developer · Delaware</p>
+    <p class="mx-auto mt-4 max-w-2xl">
+      I'm a full-stack developer at Harvard Business Services, where I build and maintain customer-facing websites and
+      internal tools with PHP, Laravel, Livewire, Vue, Alpine, and ColdFusion. I got my start writing Java, and I still
+      enjoy building games and command-line programs in my spare time.
+    </p>
+    <div class="mt-6 flex justify-center gap-4">
+      <a href={`${base}/projects/`} class="rounded bg-[rgb(53,53,112)] px-5 py-2 text-white hover:bg-[rgb(72,72,154)]">
+        View projects
+      </a>
+      <a
+        href={`${base}/contact/`}
+        class="rounded border border-[rgb(53,53,112)] px-5 py-2 text-[rgb(53,53,112)] hover:bg-gray-100"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl py-6 text-left">
+    <h2 class="mb-4 text-2xl font-medium">Skills</h2>
+    {
+      skills.map((group) => (
+        <div class="mb-3">
+          <h3 class="mb-2 font-medium">{group.label}</h3>
+          <ul class="flex flex-wrap gap-2">
+            {group.items.map((item) => (
+              <li class="rounded-full bg-[rgb(53,53,112)]/10 px-3 py-1 text-sm">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="mx-auto max-w-3xl py-6 text-left">
+    <h2 class="mb-4 text-2xl font-medium">Experience</h2>
+    {
+      experience.map((job) => (
+        <article class="mb-6">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h3 class="text-lg font-medium">
+              {job.role} · {job.company}
+            </h3>
+            <span class="text-sm text-gray-600">{job.dates}</span>
+          </div>
+          <p class="text-sm text-gray-600">{job.location}</p>
+          <ul class="mt-2 list-disc pl-5">
+            {job.points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="mx-auto grid max-w-3xl gap-8 py-6 pb-12 text-left sm:grid-cols-2">
+    <div>
+      <h2 class="mb-4 text-2xl font-medium">Certifications</h2>
+      <ul>
+        {
+          certifications.map((cert) => (
+            <li class="mb-2">
+              <span class="font-medium">{cert.name}</span>
+              <br />
+              <span class="text-sm text-gray-600">
+                {cert.issuer}, {cert.year}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h2 class="mb-4 text-2xl font-medium">Education</h2>
+      <p class="font-medium">Computer Science</p>
+      <p class="text-sm text-gray-600">Delaware Technical Community College, Georgetown, DE · 2024</p>
+    </div>
+  </section>
 </Layout>
