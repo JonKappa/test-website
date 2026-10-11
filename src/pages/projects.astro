@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Tag from '../components/Tag.astro';
 
 interface Project {
   name: string;
@@ -63,7 +64,7 @@ const projects: Project[] = [
           </div>
           <ul class="mt-2 flex flex-wrap gap-2">
             {project.tech.map((t) => (
-              <li class="rounded-full bg-[rgb(53,53,112)]/10 px-3 py-0.5 text-sm">{t}</li>
+              <Tag>{t}</Tag>
             ))}
           </ul>
           <p class="mt-3">{project.summary}</p>
