@@ -17,7 +17,12 @@ const isHome = props.path === '/';
     <ul class="flex">
       <li :class="['relative transition duration-250', { 'hover:bg-[rgb(72,72,154)]': !isHome }]">
         <span v-if="isHome" class="absolute inset-0 bg-white [view-transition-name:nav-indicator]"></span>
-        <a :href="`${base}/`" class="relative z-1 flex h-full items-center" style="view-transition-name: nav-link-home">
+        <a
+          :href="`${base}/`"
+          :aria-current="isHome ? 'page' : undefined"
+          class="relative z-1 flex h-full items-center"
+          style="view-transition-name: nav-link-home"
+        >
           <img
             class="my-2.5 mr-5 h-16 w-[105px]"
             :src="`${base}/assets/high-${isHome ? 'black' : 'white'}-trans-logo.png`"
@@ -35,6 +40,7 @@ const isHome = props.path === '/';
         <span v-if="path === link.to" class="absolute inset-0 bg-white [view-transition-name:nav-indicator]"></span>
         <a
           :href="`${base}${link.to}/`"
+          :aria-current="path === link.to ? 'page' : undefined"
           class="relative z-1 flex h-full items-center px-8"
           :style="{ viewTransitionName: `nav-link${link.to.replace('/', '-')}` }"
         >
