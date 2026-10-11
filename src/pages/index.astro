@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Tag from '../components/Tag.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -49,12 +50,12 @@ const certifications = [
       enjoy building games and command-line programs in my spare time.
     </p>
     <div class="mt-6 flex justify-center gap-4">
-      <a href={`${base}/projects/`} class="rounded bg-[rgb(53,53,112)] px-5 py-2 text-white hover:bg-[rgb(72,72,154)]">
+      <a href={`${base}/projects/`} class="rounded bg-brand px-5 py-2 text-white hover:bg-brand-hover">
         View projects
       </a>
       <a
         href={`${base}/contact/`}
-        class="rounded border border-[rgb(53,53,112)] px-5 py-2 text-[rgb(53,53,112)] hover:bg-gray-100"
+        class="rounded border border-brand px-5 py-2 text-brand hover:bg-gray-100"
       >
         Get in touch
       </a>
@@ -69,7 +70,7 @@ const certifications = [
           <h3 class="mb-2 font-medium">{group.label}</h3>
           <ul class="flex flex-wrap gap-2">
             {group.items.map((item) => (
-              <li class="rounded-full bg-[rgb(53,53,112)]/10 px-3 py-1 text-sm">{item}</li>
+              <Tag>{item}</Tag>
             ))}
           </ul>
         </div>
