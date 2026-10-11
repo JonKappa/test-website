@@ -1,7 +1,84 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Tag from '../components/Tag.astro';
+
+interface Project {
+  name: string;
+  tech: string[];
+  status?: string;
+  summary: string;
+  highlights?: string[];
+}
+
+const projects: Project[] = [
+  {
+    name: 'Project Z Defense',
+    tech: ['Java'],
+    status: 'In progress',
+    summary:
+      'A wave-based survival game where you defend against monsters coming from every direction. Each wave brings more and stronger enemies, which can drop better weapons with longer range or faster attacks.',
+    highlights: [
+      'Sprite animation rendered with JFrame and JPanel',
+      'Player movement and attacks driven by ActionListener input handling',
+    ],
+  },
+  {
+    name: 'CLI Dungeons & Dragons Game',
+    tech: ['Java'],
+    summary:
+      'A turn-based battle game in the console. Each side picks a character, the faster one attacks first, and the defender counterattacks, until one team’s characters have all fainted.',
+    highlights: ['Polymorphism used to share a template for player and computer behavior', 'Live character stats for both sides'],
+  },
+  {
+    name: 'CLI Blackjack',
+    tech: ['Java'],
+    summary:
+      'Blackjack against a computer dealer in the console. Bet, double, split, or end your turn, then the computer plays its hand, and whichever hand is closer to 21 wins.',
+    highlights: [
+      'Cards and deck modeled as encapsulated objects',
+      'Polymorphism used for the player and computer hands',
+    ],
+  },
+  {
+    name: 'CLI Calculator',
+    tech: ['Java'],
+    summary:
+      'A simple console calculator: pick addition, subtraction, multiplication, or division, enter two numbers, and get the result.',
+  },
+];
 ---
 
-<Layout>
+<Layout title="Projects">
   <h1>Projects</h1>
+  <p class="mx-auto max-w-2xl text-gray-600">A few things I’ve built on my own time.</p>
+
+  <div class="mx-auto grid max-w-5xl gap-6 py-8 text-left md:grid-cols-2">
+    {
+      projects.map((project) => (
+        <article class="flex flex-col rounded-lg border border-gray-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-xl font-medium">{project.name}</h2>
+            {project.status && (
+              <Tag as="span" variant="status">
+                {project.status}
+              </Tag>
+            )}
+          </div>
+          <ul class="mt-2 flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <Tag>{t}</Tag>
+            ))}
+          </ul>
+          <p class="mt-3">{project.summary}</p>
+          {project.highlights && project.highlights.length > 0 && (
+            <ul class="mt-3 list-disc pl-5 text-sm text-gray-700">
+              {project.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          )}
+        </article>
+      ))
+    }
+  </div>
 </Layout>
