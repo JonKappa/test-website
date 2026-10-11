@@ -5,6 +5,15 @@
 @theme {
     --color-brand: rgb(53 53 112);
     --color-brand-hover: rgb(72 72 154);
+
+    /* Scrolls a track holding two copies of a list by one copy's width, so
+       the loop is seamless. */
+    --animate-marquee: marquee 40s linear infinite;
+    @keyframes marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
 }
 
 /* "reveal": when a skill card shows its name. Mouse hover, keyboard focus,
@@ -23,6 +32,19 @@
         &:focus {
             @slot;
         }
+    }
+}
+
+/* "still": when the skills carousel shows a static, wrapping grid instead of
+   scrolling. With reduced motion, or while a card in it has keyboard focus
+   (so the focused card is never scrolled out of view). Applies to the
+   .skills-carousel element and anything inside it. */
+@custom-variant still {
+    @media (prefers-reduced-motion: reduce) {
+        @slot;
+    }
+    &:where(.skills-carousel:has(:focus-visible), .skills-carousel:has(:focus-visible) *) {
+        @slot;
     }
 }
 

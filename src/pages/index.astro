@@ -89,30 +89,46 @@ const certifications: Certification[] = [
 
   <section class="mx-auto max-w-3xl py-6">
     <h2 class="mb-8 text-center text-3xl font-medium">Skills</h2>
-    <ul class="flex flex-wrap justify-center gap-x-3 gap-y-9">
-      {
-        skills.map((skill) => (
-          <li
-            tabindex="0"
-            class="group relative flex size-26 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition duration-200 outline-brand reveal:border-brand reveal:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
-          >
-            <img
-              src={`${base}/assets/skills/${skill.logo}`}
-              alt={skill.name}
-              class="size-14 object-contain transition-transform duration-200 group-reveal:scale-125 motion-reduce:transition-none"
-              width="56"
-              height="56"
-            />
-            <span
-              aria-hidden="true"
-              class="pointer-events-none absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity duration-200 group-reveal:opacity-100"
+    {/* A looping marquee: the list is rendered twice and the track scrolls by
+        one copy. The second copy is hidden from screen readers and the Tab
+        order but can still be hovered or tapped. Pauses on hover or tap, and
+        becomes a static grid with reduced motion or keyboard focus. */}
+    <div class="skills-carousel group/carousel overflow-x-clip pt-1 pb-10 mask-x-from-90% still:mask-none">
+      <div class="flex w-max animate-marquee group-hover/carousel:[animation-play-state:paused] group-focus-within/carousel:[animation-play-state:paused] still:w-auto still:animate-none">
+        {
+          [false, true].map((isCopy) => (
+            <ul
+              aria-hidden={isCopy ? 'true' : undefined}
+              class:list={[
+                'flex shrink-0 gap-3 pr-3 still:shrink still:flex-wrap still:justify-center still:gap-y-9 still:pr-0',
+                { 'still:hidden': isCopy },
+              ]}
             >
-              {skill.name}
-            </span>
-          </li>
-        ))
-      }
-    </ul>
+              {skills.map((skill) => (
+                <li
+                  tabindex={isCopy ? '-1' : '0'}
+                  class="group relative flex size-26 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition duration-200 outline-brand reveal:border-brand reveal:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
+                >
+                  <img
+                    src={`${base}/assets/skills/${skill.logo}`}
+                    alt={isCopy ? '' : skill.name}
+                    class="size-14 object-contain transition-transform duration-200 group-reveal:scale-125 motion-reduce:transition-none"
+                    width="56"
+                    height="56"
+                  />
+                  <span
+                    aria-hidden="true"
+                    class="pointer-events-none absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity duration-200 group-reveal:opacity-100"
+                  >
+                    {skill.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ))
+        }
+      </div>
+    </div>
   </section>
 
   <section class="mx-auto max-w-3xl py-6 text-left">
