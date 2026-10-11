@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Brand colors, available as Tailwind utilities (bg-brand, text-brand,
+   hover:bg-brand-hover, ...). */
+@theme {
+    --color-brand: rgb(53 53 112);
+    --color-brand-hover: rgb(72 72 154);
+}
+
 @layer base {
     body {
         color: #212529;

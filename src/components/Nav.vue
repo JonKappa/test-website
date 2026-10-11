@@ -13,9 +13,9 @@ const isHome = props.path === '/';
 </script>
 
 <template>
-  <nav class="flex bg-[rgb(53,53,112)] text-white">
+  <nav class="flex bg-brand text-white">
     <ul class="flex">
-      <li :class="['relative transition duration-250', { 'hover:bg-[rgb(72,72,154)]': !isHome }]">
+      <li :class="['relative transition duration-250', { 'hover:bg-brand-hover': !isHome }]">
         <span v-if="isHome" class="absolute inset-0 bg-white [view-transition-name:nav-indicator]"></span>
         <a :href="`${base}/`" class="relative z-1 flex h-full items-center" style="view-transition-name: nav-link-home">
           <img
@@ -30,7 +30,7 @@ const isHome = props.path === '/';
       <li
         v-for="link in links"
         :key="link.to"
-        :class="['relative transition duration-250', path === link.to ? 'text-black' : 'hover:bg-[rgb(72,72,154)]']"
+        :class="['relative transition duration-250', path === link.to ? 'text-black' : 'hover:bg-brand-hover']"
       >
         <span v-if="path === link.to" class="absolute inset-0 bg-white [view-transition-name:nav-indicator]"></span>
         <a
