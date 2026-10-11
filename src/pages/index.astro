@@ -20,7 +20,21 @@ const skills: { name: string; logo: string }[] = [
   { name: 'Spring Boot', logo: 'spring.svg' },
 ];
 
-const experience = [
+interface Job {
+  role: string;
+  company: string;
+  location: string;
+  dates: string;
+  points: string[];
+}
+
+interface Certification {
+  name: string;
+  issuer: string;
+  year: number;
+}
+
+const experience: Job[] = [
   {
     role: 'Software Developer',
     company: 'Harvard Business Services',
@@ -45,7 +59,7 @@ const experience = [
   },
 ];
 
-const certifications = [
+const certifications: Certification[] = [
   { name: 'Certified ScrumMaster (CSM)', issuer: 'Scrum Alliance', year: 2021 },
   { name: 'Java Foundations Associate', issuer: 'Oracle', year: 2021 },
 ];
