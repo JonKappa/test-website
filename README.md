@@ -6,5 +6,4 @@ Built with [Astro](https://astro.build), Vue and [Tailwind CSS](https://tailwind
 - `npm run dev` – start the dev server
 - `npm run build` – type-check and build to `dist/`
 
-Hosted on [Netlify](https://www.netlify.com), which builds and deploys the site
-automatically on every push to `master` (settings in `netlify.toml`).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0cb63dcb-c5cf-4026-88e8-c1a0362f6248/deploy-status)](https://app.netlify.com/projects/jonkappa/deploys)
