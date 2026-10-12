@@ -2,7 +2,7 @@
   "name": "test-website",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://JonKappa.github.io/test-website/",
+  "homepage": "https://JonKappa.github.io/Website/",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
