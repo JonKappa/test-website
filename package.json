@@ -2,15 +2,12 @@
   "name": "test-website",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://JonKappa.github.io/Website/",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --nojekyll"
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/vue": "^7.0.3",
@@ -21,7 +18,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "gh-pages": "^6.3.0",
     "typescript": "^6.0.3"
   }
 }
