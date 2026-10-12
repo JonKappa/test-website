@@ -2,12 +2,72 @@
 import Layout from '../layouts/Layout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Logo files in public/assets/skills. The SVGs come from devicon (MIT, see
+// LICENSE-devicon.txt); coldfusion.webp is Adobe's ColdFusion logo.
+const skills: { name: string; logo: string }[] = [
+  { name: 'Java', logo: 'java.svg' },
+  { name: 'Python', logo: 'python.svg' },
+  { name: 'C#', logo: 'csharp.svg' },
+  { name: 'PHP', logo: 'php.svg' },
+  { name: 'ColdFusion', logo: 'coldfusion.webp' },
+  { name: 'JavaScript', logo: 'javascript.svg' },
+  { name: 'Laravel', logo: 'laravel.svg' },
+  { name: 'Livewire', logo: 'livewire.svg' },
+  { name: 'Vue', logo: 'vuejs.svg' },
+  { name: 'Alpine.js', logo: 'alpinejs.svg' },
+  { name: 'React', logo: 'react.svg' },
+  { name: 'Spring Boot', logo: 'spring.svg' },
+];
 ---
 
 <Layout>
-  <h1>Home</h1>
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
-  <img class="inline-block" src={`${base}/assets/7bv2j9.jpg`} /><br />
+  <section class="py-8">
+    <h1>Jonathan Capparell</h1>
+    <p class="text-xl text-gray-600">Software Developer · Delaware</p>
+    <p class="mx-auto mt-4 max-w-2xl">
+      I’ve been a full-stack developer at Harvard Business Services since 2022, building and maintaining their
+      customer-facing website, Client Portal, and internal admin tools with PHP, Laravel, Livewire, Vue, Alpine.js, and
+      ColdFusion. I got my start writing Java, and I still enjoy building games and command-line programs in my spare time.
+    </p>
+    <div class="mt-6 flex justify-center gap-4">
+      <a href={`${base}/projects/`} class="rounded bg-brand px-5 py-2 text-white hover:bg-brand-hover">
+        View projects
+      </a>
+      <a
+        href={`${base}/contact/`}
+        class="rounded border border-brand px-5 py-2 text-brand hover:bg-gray-100"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl py-6">
+    <h2 class="mb-8 text-center text-3xl font-medium">Skills</h2>
+    <ul class="flex flex-wrap justify-center gap-x-3 gap-y-9">
+      {
+        skills.map((skill) => (
+          <li
+            tabindex="0"
+            class="group relative flex size-26 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition duration-200 outline-brand reveal:border-brand reveal:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
+          >
+            <img
+              src={`${base}/assets/skills/${skill.logo}`}
+              alt={skill.name}
+              class="size-14 object-contain transition-transform duration-200 group-reveal:scale-125 motion-reduce:transition-none"
+              width="56"
+              height="56"
+            />
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity duration-200 group-reveal:opacity-100"
+            >
+              {skill.name}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>

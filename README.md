@@ -1,4 +1,4 @@
-# test-website
+# Portfolio Website
 https://jonkappa.github.io/test-website/
 
 Built with [Astro](https://astro.build), Vue and [Tailwind CSS](https://tailwindcss.com).
