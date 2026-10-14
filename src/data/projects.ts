@@ -1,8 +1,4 @@
----
-import Layout from '../layouts/Layout.astro';
-import Tag from '../components/Tag.astro';
-
-interface Project {
+export interface Project {
   name: string;
   tech: string[];
   status?: string;
@@ -10,7 +6,7 @@ interface Project {
   highlights?: string[];
 }
 
-const projects: Project[] = [
+export const projects: Project[] = [
   {
     name: 'Project Z Defense',
     tech: ['Java'],
@@ -46,39 +42,4 @@ const projects: Project[] = [
       'A simple console calculator: pick addition, subtraction, multiplication, or division, enter two numbers, and get the result.',
   },
 ];
----
 
-<Layout title="Projects">
-  <h1>Projects</h1>
-  <p class="mx-auto max-w-2xl text-gray-600">A few things I’ve built on my own time.</p>
-
-  <div class="mx-auto grid max-w-5xl gap-6 py-8 text-left md:grid-cols-2">
-    {
-      projects.map((project) => (
-        <article class="flex flex-col rounded-lg border border-gray-200 p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h2 class="text-xl font-medium">{project.name}</h2>
-            {project.status && (
-              <Tag as="span" variant="status">
-                {project.status}
-              </Tag>
-            )}
-          </div>
-          <ul class="mt-2 flex flex-wrap gap-2">
-            {project.tech.map((t) => (
-              <Tag>{t}</Tag>
-            ))}
-          </ul>
-          <p class="mt-3">{project.summary}</p>
-          {project.highlights && project.highlights.length > 0 && (
-            <ul class="mt-3 list-disc pl-5 text-sm text-gray-700">
-              {project.highlights.map((h) => (
-                <li>{h}</li>
-              ))}
-            </ul>
-          )}
-        </article>
-      ))
-    }
-  </div>
-</Layout>

@@ -2,33 +2,60 @@
 import '../styles.css';
 import Nav from '../components/Nav.vue';
 import Footer from '../components/Footer.vue';
-import { ClientRouter } from 'astro:transitions';
 
 interface Props {
-  /** Page name shown before the site name in the tab title, e.g. "Projects". */
+  /** Page name shown before the site name in the tab title, e.g. "Message sent". */
   title?: string;
 }
 
 const siteName = 'Jonathan Capparell';
 const title = Astro.props.title ? `${Astro.props.title} | ${siteName}` : siteName;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const path = Astro.url.pathname.slice(base.length).replace(/\/$/, '') || '/';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <ClientRouter />
   </head>
-  <body>
-    <Nav base={base} path={path} />
-    <div class="mx-auto mt-4 max-w-[1140px] px-3 text-center">
+  <body class="flex min-h-screen flex-col">
+    <Nav base={base} />
+    <main class="flex-1">
       <slot />
-    </div>
-    <Footer base={base} />
+    </main>
+    <Footer />
+
+    <script>
+      // Mark the nav link for the home page section currently in view with
+      // aria-current. Pages without those sections leave every link unmarked.
+      const links = [...document.querySelectorAll<HTMLAnchorElement>('a[data-spy]')];
+      const sections = links
+        .map((a) => document.getElementById(a.hash.slice(1)))
+        .filter((s): s is HTMLElement => s !== null);
+
+      const update = () => {
+        if (sections.length === 0) return;
+        const line = window.innerHeight * 0.35;
+        let current = sections[0];
+        for (const s of sections) {
+          if (s.getBoundingClientRect().top <= line) current = s;
+        }
+        // At the bottom of the page the last section may be too short to reach the line.
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+          current = sections[sections.length - 1];
+        }
+        for (const a of links) {
+          if (a.hash === `#${current.id}`) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        }
+      };
+
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+    </script>
   </body>
 </html>

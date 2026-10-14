@@ -7,25 +7,6 @@
     --color-brand-hover: rgb(72 72 154);
 }
 
-/* "reveal": when a skill card shows its name. Mouse hover, keyboard focus,
-   or a tap on touch screens (which have no hover). Use group-reveal on
-   children of a .group element. */
-@custom-variant reveal {
-    @media (hover: hover) {
-        &:hover {
-            @slot;
-        }
-    }
-    &:focus-visible {
-        @slot;
-    }
-    @media (pointer: coarse) {
-        &:focus {
-            @slot;
-        }
-    }
-}
-
 @layer base {
     body {
         color: #212529;
@@ -36,20 +17,5 @@
         font-size: 2.5rem;
         font-weight: 500;
         line-height: 1.2;
-    }
-}
-
-/* Lets Astro's ClientRouter slide the active-link highlight from the old tab
-   to the new one on navigation. The highlight and each link have their own
-   view-transition-name (in Nav.vue), so link text is drawn above the sliding
-   box instead of being covered by it. */
-::view-transition-group(nav-indicator) {
-    animation-duration: .3s;
-    animation-timing-function: ease-in-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    ::view-transition-group(nav-indicator) {
-        animation: none;
     }
 }
