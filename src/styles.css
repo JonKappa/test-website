@@ -7,6 +7,52 @@
     --color-brand-hover: rgb(72 72 154);
 }
 
+/* Fades the hero's purple into the white section below it. The stops follow
+   a smoothstep curve, mixed in OKLab so the brightness rises evenly, and a
+   faint noise layer dithers the gradient so 8-bit color steps don't show as
+   bands. */
+@utility hero-fade {
+    position: relative;
+    background: linear-gradient(
+        in oklab to bottom,
+        color-mix(in oklab, var(--color-brand), white 0.0%) 0.00%,
+        color-mix(in oklab, var(--color-brand), white 0.5%) 4.17%,
+        color-mix(in oklab, var(--color-brand), white 2.0%) 8.33%,
+        color-mix(in oklab, var(--color-brand), white 4.3%) 12.50%,
+        color-mix(in oklab, var(--color-brand), white 7.4%) 16.67%,
+        color-mix(in oklab, var(--color-brand), white 11.2%) 20.83%,
+        color-mix(in oklab, var(--color-brand), white 15.6%) 25.00%,
+        color-mix(in oklab, var(--color-brand), white 20.6%) 29.17%,
+        color-mix(in oklab, var(--color-brand), white 25.9%) 33.33%,
+        color-mix(in oklab, var(--color-brand), white 31.6%) 37.50%,
+        color-mix(in oklab, var(--color-brand), white 37.6%) 41.67%,
+        color-mix(in oklab, var(--color-brand), white 43.8%) 45.83%,
+        color-mix(in oklab, var(--color-brand), white 50.0%) 50.00%,
+        color-mix(in oklab, var(--color-brand), white 56.2%) 54.17%,
+        color-mix(in oklab, var(--color-brand), white 62.4%) 58.33%,
+        color-mix(in oklab, var(--color-brand), white 68.4%) 62.50%,
+        color-mix(in oklab, var(--color-brand), white 74.1%) 66.67%,
+        color-mix(in oklab, var(--color-brand), white 79.4%) 70.83%,
+        color-mix(in oklab, var(--color-brand), white 84.4%) 75.00%,
+        color-mix(in oklab, var(--color-brand), white 88.8%) 79.17%,
+        color-mix(in oklab, var(--color-brand), white 92.6%) 83.33%,
+        color-mix(in oklab, var(--color-brand), white 95.7%) 87.50%,
+        color-mix(in oklab, var(--color-brand), white 98.0%) 91.67%,
+        color-mix(in oklab, var(--color-brand), white 99.5%) 95.83%,
+        color-mix(in oklab, var(--color-brand), white 100.0%) 100.00%
+    );
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+        opacity: 0.08;
+        pointer-events: none;
+    }
+}
+
 @layer base {
     body {
         color: #212529;
