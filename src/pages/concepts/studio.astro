@@ -87,10 +87,10 @@ const inputClass =
     </section>
 
     <section aria-label="Skills" class="border-b border-gray-200 bg-white">
-      <ul class="mx-auto grid max-w-6xl grid-cols-4 gap-y-6 px-4 py-8 sm:grid-cols-6 lg:grid-cols-12">
+      <ul class="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-4 gap-y-6 px-4 py-8">
         {
           skills.map((s) => (
-            <li class="flex flex-col items-center gap-2">
+            <li class="flex w-20 flex-col items-center gap-2">
               <img src={`${base}/assets/skills/${s.logo}`} alt="" class="size-9 object-contain" width="36" height="36" />
               <span class="text-xs text-gray-500">{s.name}</span>
             </li>
