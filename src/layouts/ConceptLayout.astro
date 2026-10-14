@@ -1,0 +1,91 @@
+---
+// Shell for the one-page redesign concepts under /concepts. Each concept
+// brings its own nav and styling; this adds the <head>, a switcher between
+// concepts, and scroll-spy for in-page nav links.
+import '../styles.css';
+
+interface Props {
+  /** Concept name shown in the tab title and the switcher. */
+  name: string;
+  /** Google Fonts stylesheet URL, if the concept uses a web font. */
+  fonts?: string;
+}
+
+const { name, fonts } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const concepts = [
+  { slug: 'studio', label: 'Studio' },
+  { slug: 'terminal', label: 'Terminal' },
+  { slug: 'editorial', label: 'Editorial' },
+];
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>{`${name} concept | Jonathan Capparell`}</title>
+    {
+      fonts && (
+        <>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link rel="stylesheet" href={fonts} />
+        </>
+      )
+    }
+  </head>
+  <body>
+    <slot />
+
+    <nav
+      aria-label="Concepts"
+      class="fixed right-3 bottom-3 z-50 flex items-center gap-1 rounded-full bg-gray-900/90 p-1 text-xs text-white shadow-lg backdrop-blur"
+    >
+      <a href={`${base}/concepts/`} class="rounded-full px-3 py-1.5 text-gray-400 hover:text-white">Concepts</a>
+      {
+        concepts.map((c) => (
+          <a
+            href={`${base}/concepts/${c.slug}/`}
+            class:list={['rounded-full px-3 py-1.5', c.label === name ? 'bg-white text-gray-900' : 'hover:bg-white/10']}
+          >
+            {c.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <script>
+      // Mark the nav link for the section currently in view with
+      // aria-current, so each concept can style the active link.
+      const links = [...document.querySelectorAll<HTMLAnchorElement>('a[data-spy]')];
+      const sections = links
+        .map((a) => document.getElementById(a.hash.slice(1)))
+        .filter((s): s is HTMLElement => s !== null);
+
+      const update = () => {
+        const line = window.innerHeight * 0.35;
+        let current = sections[0];
+        for (const s of sections) {
+          if (s.getBoundingClientRect().top <= line) current = s;
+        }
+        // At the bottom of the page the last section may be too short to reach the line.
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+          current = sections[sections.length - 1];
+        }
+        for (const a of links) {
+          if (a.hash === `#${current?.id}`) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        }
+      };
+
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+    </script>
+  </body>
+</html>
