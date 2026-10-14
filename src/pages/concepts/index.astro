@@ -7,6 +7,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const concepts = [
   {
+    slug: 'original',
+    name: 'Original',
+    blurb: 'The current site as it is today, with Home, Projects and Contact stacked on one page. The nav highlight slides to the section in view.',
+    swatch: 'border-t-[18px] border-brand bg-white ring-1 ring-gray-300',
+  },
+  {
     slug: 'studio',
     name: 'Studio',
     blurb: 'The current indigo brand, polished. Sticky pill nav, a bold hero, a featured project and a side-by-side contact form.',
@@ -31,10 +37,10 @@ const concepts = [
   <main class="mx-auto max-w-4xl px-4 py-16 text-[#212529]">
     <h1>Redesign concepts</h1>
     <p class="max-w-2xl text-gray-600">
-      Three directions for the site. Each puts Home, Projects and Contact on one scrolling page, using the same
+      Four directions for the site. Each puts Home, Projects and Contact on one scrolling page, using the same
       content as the live site.
     </p>
-    <ul class="mt-10 grid gap-6 md:grid-cols-3">
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2">
       {
         concepts.map((c) => (
           <li>
