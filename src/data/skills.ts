@@ -1,11 +1,6 @@
 // Logo files in public/assets/skills. The SVGs come from devicon (MIT, see
 // LICENSE-devicon.txt); coldfusion.webp is Adobe's ColdFusion logo.
-export const skills: {
-  name: string;
-  logo: string;
-  /** The logo is solid black, so it needs inverting on a dark background. */
-  dark?: boolean;
-}[] = [
+export const skills: { name: string; logo: string }[] = [
   { name: 'Java', logo: 'java.svg' },
   { name: 'Python', logo: 'python.svg' },
   { name: 'C#', logo: 'csharp.svg' },
@@ -26,5 +21,5 @@ export const skills: {
   { name: 'SQL Server', logo: 'microsoftsqlserver.svg' },
   { name: 'Tailwind CSS', logo: 'tailwindcss.svg' },
   { name: 'jQuery', logo: 'jquery.svg' },
-  { name: 'Unreal Engine', logo: 'unrealengine.svg', dark: true },
+  { name: 'Unreal Engine', logo: 'unrealengine.svg' },
 ];
