@@ -1,12 +1,7 @@
 <script setup lang="ts">
-defineProps<{ base: string }>();
-
 const year = new Date().getFullYear();
 </script>
 
 <template>
-  <footer id="footer" class="bg-black pt-[1%] pb-[3%] text-center text-white">
-    Created by <a :href="`${base}/`" class="text-[blue] underline">Jonathan Capparell</a> | ©{{ year }} <br />All
-    rights reserved.
-  </footer>
+  <footer class="bg-gray-900 py-8 text-center text-sm text-gray-400">© {{ year }} Jonathan Capparell</footer>
 </template>
